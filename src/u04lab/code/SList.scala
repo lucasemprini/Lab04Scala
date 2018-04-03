@@ -1,5 +1,7 @@
 package u04lab.code
 
+import scala.language.postfixOps // silence warnings
+
 sealed trait List[A] {
 
   def head: Option[A]

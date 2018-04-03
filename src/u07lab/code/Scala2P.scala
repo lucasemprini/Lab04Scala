@@ -1,6 +1,8 @@
 package u07lab.code
 
 import alice.tuprolog._
+import scala.language.implicitConversions // silence warnings
+import scala.language.postfixOps // silence warnings
 
 object Scala2P {
 
