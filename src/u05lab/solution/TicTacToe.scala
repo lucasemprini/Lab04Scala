@@ -18,7 +18,18 @@ object TicTacToe extends App {
     toReturn
   }
 
-  def placeAnyMark(board: Board, player: Player): Seq[Board] = ???
+  def placeAnyMark(board: Board, player: Player): Seq[Board] = {
+    var seqToreturn: Seq[Board] = Seq.empty
+    board.foreach( m => {
+      var newBoard = board
+      if(m.player != player) {
+        newBoard = List(Mark(m.x, m.y, m.player), Mark(m.x, m.y, player))
+      }
+      seqToreturn:+ newBoard
+    })
+    seqToreturn
+    /////////////////////////////////////////////////////////////////
+  }
 
   def computeAnyGame(player: Player, moves: Int): Stream[Game] = ???
 
