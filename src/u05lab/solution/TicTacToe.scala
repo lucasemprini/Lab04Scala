@@ -1,4 +1,4 @@
-package u05lab.code
+package u05lab.solution
 
 object TicTacToe extends App {
   sealed trait Player{
