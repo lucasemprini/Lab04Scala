@@ -29,19 +29,18 @@ trait NonEmpty[T] extends Parser[T]{
 class NonEmptyParser(chars: Set[Char]) extends BasicParser(chars) with NonEmpty[Char]
 
 trait NotTwoConsecutive[T] extends Parser[T]{
-  private[this] var consecutive = false
   private[this] var previous: Option[T] = Option.empty
 
   abstract override def parse(t: T): Boolean = {
     if(previous.isDefined && t.equals(previous.get)) {
-      consecutive = true
+      return false
     } else {
       previous = Option(t)
     }
-    !consecutive && super.parse(t)
+    super.parse(t)
   }
 
-  abstract override def end(): Boolean = super.end()
+  abstract override def end(): Boolean = {previous = Option.empty; super.end()}
 }
 
 class NotTwoConsecutiveParser(chars: Set[Char]) extends BasicParser(chars) with NotTwoConsecutive[Char]

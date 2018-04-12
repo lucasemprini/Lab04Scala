@@ -12,7 +12,11 @@ object TicTacToe extends App {
   type Board = List[Mark]
   type Game = List[Board]
 
-  def find(board: Board, x: Double, y: Double): Option[Player] = ???
+  def find(board: Board, x: Double, y: Double): Option[Player] = {
+    var toReturn: Option[Player] = Option.empty
+    board.foreach(m => if(m.x == x && m.y == y) toReturn = Option(m.player))
+    toReturn
+  }
 
   def placeAnyMark(board: Board, player: Player): Seq[Board] = ???
 
@@ -20,7 +24,7 @@ object TicTacToe extends App {
 
   def printBoards(game: Seq[Board]): Unit =
     for (y <- 0 to 2; board <- game.reverse; x <- 0 to 2) {
-      print(find(board, x, y) map (_.toString) getOrElse ("."))
+      print(find(board, x, y) map (_.toString) getOrElse ".")
       if (x == 2) { print(" "); if (board == game.head) println()}
     }
 
